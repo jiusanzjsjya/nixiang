@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "nixiang - Vue逆向练习插件",
+  "version": "1.0.0",
+  "description": "故意埋漏洞的Vue客户端逆向工程练习插件。用于学习如何分析前端打包代码、发现硬编码密钥、弱加密、localStorage泄露等问题。仅供学习使用。",
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "nixiang 逆向练习"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}

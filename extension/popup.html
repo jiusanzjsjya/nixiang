@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nixiang - 逆向练习插件</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- 左侧主练习区 -->
+    <div class="main-panel">
+      <h1>Vue 逆向练习 Demo</h1>
+      <p class="subtitle">故意埋漏洞的登录页面 · 浏览器插件版</p>
+
+      <div id="login-box">
+        <input id="username" type="text" placeholder="用户名（试试 admin）" />
+        <input id="password" type="password" placeholder="密码" />
+        <button id="login-btn">登录</button>
+      </div>
+
+      <div id="success-box" style="display:none;">
+        <p id="success-msg" class="success"></p>
+        <button id="logout-btn" class="secondary">退出登录</button>
+      </div>
+
+      <p id="message" class="msg"></p>
+
+      <div class="actions">
+        <button id="scan-btn" class="secondary">扫描 localStorage（教学）</button>
+      </div>
+
+      <div id="secrets" class="secrets" style="display:none;">
+        <h3>发现的敏感数据：</h3>
+        <ul id="secrets-list"></ul>
+      </div>
+    </div>
+
+    <!-- 右侧教学插件面板 -->
+    <div class="plugin-panel" id="plugin-panel">
+      <div class="plugin-header">
+        <h2>逆向教学面板</h2>
+        <button id="close-panel" class="close">×</button>
+      </div>
+      <div class="plugin-body">
+        <h3>练习步骤</h3>
+        <ol>
+          <li>打开本插件弹窗</li>
+          <li>按 <code>F12</code> 打开开发者工具</li>
+          <li>在 Sources / 调试器 中搜索：<br>
+            <code>API_KEY</code>、<code>0x1a</code>、<code>admin@2026</code></li>
+          <li>尝试还原异或加密逻辑</li>
+          <li>修改 localStorage 或前端逻辑绕过校验</li>
+        </ol>
+
+        <h3>本插件埋的漏洞</h3>
+        <ul>
+          <li>硬编码 API Key 和密码</li>
+          <li>弱异或加密（SECRET_SALT = 0x1A）</li>
+          <li>关键判断完全在前端</li>
+          <li>敏感数据写入 localStorage</li>
+        </ul>
+
+        <h3>正确密码提示</h3>
+        <p>用户名：<code>admin</code><br>密码：请自己通过逆向还原 😄</p>
+
+        <p class="tip">提示：即使是插件打包后的代码，字符串和常量依然清晰可见。这正是前端逆向的核心练习点。</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
